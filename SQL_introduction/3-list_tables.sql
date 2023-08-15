@@ -1,3 +1,3 @@
 -- List all tables in the specified database
-USE `CARS`;
+USE `USERS`;
 SHOW TABLES;
