@@ -1,3 +1,3 @@
 -- List all tables in the specified database
-USE `databasename_placeholder`;
+USE `CARS`;
 SHOW TABLES;
