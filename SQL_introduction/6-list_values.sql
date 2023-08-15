@@ -1,3 +1,3 @@
 -- List all rows from the table first_table
 SELECT *
-FROM $1.first_table;
+FROM hbtn_0c_0.first_table;
