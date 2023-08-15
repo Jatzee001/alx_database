@@ -1,3 +1,3 @@
 -- List all tables in the specified database
-USE your_database_name;
+USE $1;
 SHOW TABLES;
