@@ -1,4 +1,4 @@
--- List the columns and their data types of the table first_table in the specified database
-SELECT COLUMN_NAME, DATA_TYPE
-FROM information_schema.COLUMNS
+-- Retrieve and format the CREATE TABLE statement for first_table
+SELECT CONCAT('first_table', 'CREATE TABLE ', TABLE_NAME, '(', GROUP_CONCAT(COLUMN_NAME, ' ', COLUMN_TYPE, ' ', IS_NULLABLE, ' ', COLUMN_DEFAULT SEPARATOR ', '), ') ENGINE=', ENGINE, ' DEFAULT CHARSET=', CHARACTER_SET_NAME, ' COLLATE=', COLLATION_NAME)
+FROM information_schema.TABLES
 WHERE TABLE_SCHEMA = '$1' AND TABLE_NAME = 'first_table';
