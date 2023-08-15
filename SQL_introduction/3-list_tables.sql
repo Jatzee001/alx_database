@@ -1,3 +1,3 @@
 -- List all tables in the specified database
-USE $1;
+USE `$(echo "$1")`;
 SHOW TABLES;
