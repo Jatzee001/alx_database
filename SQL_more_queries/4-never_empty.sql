@@ -1,6 +1,6 @@
 -- Set the MySQL root password
-MYSQL_ROOT_PASSWORD="08105659056Mtn."
-DATABASE_NAME="function_name" # Accept the database name as an argument
+MYSQL_ROOT_PASSWORD="your_root_password"
+DATABASE_NAME="$1" # Accept the database name as an argument
 
 -- Check if the id_not_null table exists
 EXIST=$(mysql -hlocalhost -uroot -p$MYSQL_ROOT_PASSWORD $DATABASE_NAME -e "SHOW TABLES LIKE 'id_not_null';")
@@ -10,8 +10,8 @@ else
     echo "id_not_null exists"
 fi
 
--- Execute the 4-never_empty.sql script to create the table
-mysql -hlocalhost -uroot -p$MYSQL_ROOT_PASSWORD $DATABASE_NAME < 4-never_empty.sql
+-- Execute the 4-never_empty.sql_no_comment script to create the table
+mysql -hlocalhost -uroot -p$MYSQL_ROOT_PASSWORD $DATABASE_NAME < 4-never_empty.sql_no_comment
 
 -- Insert data into the id_not_null table
 echo 'INSERT INTO id_not_null (id, name) VALUES (89, "Holberton School");' | mysql -hlocalhost -uroot -p$MYSQL_ROOT_PASSWORD $DATABASE_NAME
