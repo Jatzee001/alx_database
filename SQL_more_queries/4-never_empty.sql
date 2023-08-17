@@ -14,8 +14,15 @@ mysql -hlocalhost -uroot -p$MYSQL_ROOT_PASSWORD $DATABASE_NAME < 4-never_empty.s
 
 -- Insert data into the id_not_null table
 echo 'INSERT INTO id_not_null (id, name) VALUES (89, "Holberton School");' | mysql -hlocalhost -uroot -p$MYSQL_ROOT_PASSWORD $DATABASE_NAME
+
 -- Insert data without specifying the id (default value used)
 echo 'INSERT INTO id_not_null (name) VALUES ("Holberton");' | mysql -hlocalhost -uroot -p$MYSQL_ROOT_PASSWORD $DATABASE_NAME
 
--- Display the content of the id_not_null table (using a script)
-cat 4-show_data.sql | mysql -hlocalhost -uroot -p$MYSQL_ROOT_PASSWORD $DATABASE_NAME
+-- Attempt to insert data without specifying the name (expected error)
+mysql -hlocalhost -uroot -p$MYSQL_ROOT_PASSWORD $DATABASE_NAME -e "INSERT INTO id_not_null (id) VALUES (333);"
+
+-- Display the content of the id_not_null table
+echo 'INSERT INTO id_not_null (name) VALUES ("Holberton");' | mysql -hlocalhost -uroot -p$MYSQL_ROOT_PASSWORD $DATABASE_NAME
+
+-- Display the content of the id_not_null table again
+echo 'INSERT INTO id_not_null (id, name) VALUES (89, "Holberton School");' | mysql -hlocalhost -uroot -p$MYSQL_ROOT_PASSWORD $DATABASE_NAME
