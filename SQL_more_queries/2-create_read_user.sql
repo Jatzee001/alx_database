@@ -1,6 +1,6 @@
 -- Set the MySQL root password
-MYSQL_ROOT_PASSWORD="your_root_password"
-USER_0D_2_PASSWORD="user_0d_2_pwd"
+MYSQL_ROOT_PASSWORD="08105659056Mtn."
+USER_0D_2_PASSWORD="qwerty1244"
 
 -- Check if user user_0d_2 exists
 mysql -hlocalhost -uroot -p$MYSQL_ROOT_PASSWORD -e "SELECT user FROM mysql.user WHERE user = 'user_0d_2';" 2>&1 | grep -q 'user_0d_2' && echo "user_0d_2 exists" || echo "user_0d_2 doesn't exist"
