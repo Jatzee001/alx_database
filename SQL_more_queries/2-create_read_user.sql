@@ -11,12 +11,12 @@ mysql -hlocalhost -uroot -p$MYSQL_ROOT_PASSWORD -e "CREATE DATABASE IF NOT EXIST
 -- Create user user_0d_2 if not exists
 mysql -hlocalhost -uroot -p$MYSQL_ROOT_PASSWORD -e "CREATE USER IF NOT EXISTS 'user_0d_2'@'localhost' IDENTIFIED BY '$USER_0D_2_PASSWORD';"
 
--- Grant SELECT privilege to user_0d_2 on the hbtn_0d_2 database
+-- Grant privileges to user_0d_2 on the hbtn_0d_2 database
 mysql -hlocalhost -uroot -p$MYSQL_ROOT_PASSWORD -e "GRANT USAGE ON *.* TO 'user_0d_2'@'localhost';"
 mysql -hlocalhost -uroot -p$MYSQL_ROOT_PASSWORD -e "GRANT SELECT ON hbtn_0d_2.* TO 'user_0d_2'@'localhost';"
 
--- Try to login with user_0d_2
-mysql -hlocalhost -uuser_0d_2 -p$USER_0D_2_PASSWORD -e "SHOW DATABASES;"
+-- Show grants for user_0d_2
+mysql -hlocalhost -uroot -p$MYSQL_ROOT_PASSWORD -e "SHOW GRANTS FOR 'user_0d_2'@'localhost';"
 
 -- Execute the 0-privileges.sql script
 cat 0-privileges.sql | mysql -hlocalhost -uroot -p$MYSQL_ROOT_PASSWORD
