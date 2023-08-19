@@ -1,13 +1,23 @@
 -- MySQL connection configuration
 MYSQL_CMD="mysql -hlocalhost -uroot -p"
 
--- Create user and grant privileges
-echo "Creating user 'user_0d_1' and granting privileges..."
-echo "CREATE USER 'user_0d_1'@'localhost';" | $MYSQL_CMD
-echo "GRANT ALL PRIVILEGES ON *.* TO 'user_0d_1'@'localhost';" | $MYSQL_CMD
+-- Function to list privileges of a user
+list_privileges() {
+    local username="$1"
+    echo "Privileges for $username@localhost:"
+    $MYSQL_CMD -e "SHOW GRANTS FOR '$username'@'localhost';"
+}
 
--- Execute SQL commands from 0-privileges.sql
-echo "Executing SQL commands from 0-privileges.sql..."
-$MYSQL_CMD < 0-privileges.sql
+-- Check if users exist and list their privileges
+echo "Checking users and their privileges:"
+$MYSQL_CMD -e "SELECT user FROM mysql.user WHERE user IN ('user_0d_1', 'user_0d_2');" | grep user_0d_1
+if [ $? -eq 0 ]; then
+    list_privileges user_0d_1
+else
+    echo "Users don't exist"
 
-echo "Script completed."
+$MYSQL_CMD -e "SELECT user FROM mysql.user WHERE user = 'user_0d_2';" | grep user_0d_2
+if [ $? -eq 0 ]; then
+    list_privileges user_0d_2
+else
+    echo "Users don't exist"
