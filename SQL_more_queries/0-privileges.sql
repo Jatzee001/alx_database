@@ -1,11 +1,13 @@
--- Set the MySQL root password
-MYSQL_ROOT_PASSWORD="08105659056Mtn."
+-- MySQL connection configuration
+MYSQL_CMD="mysql -hlocalhost -uroot -p"
 
--- Execute the 0-privileges.sql script
-mysql -hlocalhost -uroot -p$MYSQL_ROOT_PASSWORD < 0-privileges.sql
+-- Create user and grant privileges
+echo "Creating user 'user_0d_1' and granting privileges..."
+echo "CREATE USER 'user_0d_1'@'localhost';" | $MYSQL_CMD
+echo "GRANT ALL PRIVILEGES ON *.* TO 'user_0d_1'@'localhost';" | $MYSQL_CMD
 
--- Check if users exist and display the correct output
-mysql -hlocalhost -uroot -p$MYSQL_ROOT_PASSWORD -e "SELECT user FROM mysql.user WHERE user IN ('user_0d_1', 'user_0d_2');"
+-- Execute SQL commands from 0-privileges.sql
+echo "Executing SQL commands from 0-privileges.sql..."
+$MYSQL_CMD < 0-privileges.sql
 
--- Display user_0d_1 privileges
-mysql -hlocalhost -uroot -p$MYSQL_ROOT_PASSWORD -e "SHOW GRANTS FOR 'user_0d_1'@'localhost';"
+echo "Script completed."
