@@ -1,12 +1,11 @@
--- Set the MySQL root password
-MYSQL_ROOT_PASSWORD="08105659056Mtn."
-DATABASE_NAME="$1" # Accept the database name as an argument
+-- Create the database if not exists
+CREATE DATABASE IF NOT EXISTS hbtn_test_db_5;
 
--- Execute the SQL commands to create the unique_id table
-echo "USE $DATABASE_NAME;
-CREATE TABLE unique_id (
-    id INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(256),
-    PRIMARY KEY (id),
-    UNIQUE (id)
-);" | mysql -hlocalhost -uroot -p$MYSQL_ROOT_PASSWORD
+-- Use the specified database
+USE hbtn_test_db_5;
+
+-- Create table unique_id if not exists
+CREATE TABLE IF NOT EXISTS unique_id (
+    id INT DEFAULT 1 UNIQUE,
+    name VARCHAR(256)
+);
