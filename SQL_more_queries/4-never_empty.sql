@@ -1,10 +1,9 @@
--- Set the MySQL root password
-MYSQL_ROOT_PASSWORD="08105659056Mtn."
-DATABASE_NAME="$1" # Accept the database name as an argument
+-- Create or use the database hbtn_test_db_4
+CREATE DATABASE IF NOT EXISTS hbtn_test_db_4;
+USE hbtn_test_db_4;
 
--- Create the id_not_null table using SQL commands
-echo "USE $DATABASE_NAME;
-CREATE TABLE id_not_null (
-    id INT NOT NULL DEFAULT 1,
+-- Create table id_not_null if not exists
+CREATE TABLE IF NOT EXISTS id_not_null (
+    id INT DEFAULT 1,
     name VARCHAR(256)
-);" | mysql -hlocalhost -uroot -p$MYSQL_ROOT_PASSWORD
+);
