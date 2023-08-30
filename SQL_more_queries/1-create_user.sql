@@ -1,9 +1,8 @@
--- Set the MySQL root password
-MYSQL_ROOT_PASSWORD="08105659056Mtn."
-USER_0D_1_PASSWORD="qwertyuiop"
+-- Create user user_0d_1 if not exists
+CREATE USER IF NOT EXISTS 'user_0d_1'@'localhost' IDENTIFIED BY 'user_0d_1_pwd';
 
--- Execute the 1-create_user.sql script
-mysql -hlocalhost -uroot -p$MYSQL_ROOT_PASSWORD < 1-create_user.sql
+-- Grant all privileges to user_0d_1
+GRANT ALL PRIVILEGES ON *.* TO 'user_0d_1'@'localhost';
 
--- Execute the 0-privileges.sql script
-mysql -hlocalhost -uuser_0d_1 -p$USER_0D_1_PASSWORD < 0-privileges.sql
+-- Flush privileges to apply changes
+FLUSH PRIVILEGES;
